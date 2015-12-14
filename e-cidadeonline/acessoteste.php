@@ -26,7 +26,7 @@
  */
 
 
-// fui la...
+//teste teste
 
 require("libs/db_stdlib.php");
 db_postmemory($HTTP_POST_VARS);
