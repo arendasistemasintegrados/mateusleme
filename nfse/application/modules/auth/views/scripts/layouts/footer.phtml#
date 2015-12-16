@@ -1,0 +1,60 @@
+<script>
+  function stickyFooter() {
+    'use strict';
+    var mFoo = $('.footer');
+    if ((($(document.body).height() + mFoo.outerHeight()) < $(window).height() && mFoo.css('position') === 'fixed') || ($(document.body).height() < $(window).height() && mFoo.css('position') !== 'fixed')) {
+        mFoo.css({ position: 'fixed', bottom: '0px', width:'100%' });
+    } else {
+        mFoo.css({ position: 'static' });
+    }
+}
+
+jQuery(document).ready(function($){
+    'use strict';
+    stickyFooter();
+    $(window).scroll(stickyFooter);
+    $(window).resize(stickyFooter);
+    $(window).load(stickyFooter);
+});
+</script>
+<div style="float: left; margin-right: 0px; text-align: left;">
+<p>
+  <strong>Solução Municipal </strong><br><br><br>Parceira para desenvolvimento dos municípios brasileiros.<br>
+  
+</p>
+<p>
+  <a href="http://www.solucaomunicipal.com" target="_blank"> http://www.solucaomunicipal.com</a>
+</p>
+</div>
+
+<div style="float: right; text-align: right; margin-right: 20px;">
+<?php if ($this->oPrefeitura) { ?>
+
+  <p>
+    <?php
+    echo "{$this->oPrefeitura->getNome()} - {$this->oPrefeitura->getMunicipio()} - {$this->oPrefeitura->getUf()}"
+    ?>
+  </p>
+  <p>
+    <?php echo "{$this->oPrefeitura->getEndereco()}, {$this->oPrefeitura->getNumero()}" ?>
+    <?php echo '- CEP: ' . DBSeller_Helper_Number_Format::maskCep($this->oPrefeitura->getCep()); ?>
+  </p>
+  <?php if ($this->oPrefeitura->getTelefone()) { ?>
+    <p>
+      <?php echo 'Fone: ' . DBSeller_Helper_Number_Format::maskPhoneNumber($this->oPrefeitura->getTelefone()) ?>
+
+      <?php if ($this->oPrefeitura->getEmail()) { ?>
+        &nbsp;&nbsp;-&nbsp;&nbsp;
+        <?php echo 'Email: ' . $this->oPrefeitura->getEmail() ?>
+      <?php } ?>
+    </p>
+  <?php } ?>
+<?php } else { ?>
+
+  <p>DBSeller Serviços de Informática Ltda. - Porto Alegre - RS</p>
+  <p>Av. Júlio de Castilhos, 44 (5º Andar - Sala 501) - Centro - CEP: 90030-130</p>
+  <p>Fone: 0xx (51) 3076.5101</p>
+<?php } ?>
+</div>
+
+

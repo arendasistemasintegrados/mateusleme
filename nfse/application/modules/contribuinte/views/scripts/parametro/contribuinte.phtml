@@ -1,0 +1,34 @@
+<?php $oBaseUrlHelper = new Zend_View_Helper_BaseUrl(); ?>
+<?php if($this->administrativo) { ?>
+<fieldset>
+  <legend><?php echo $this->translate->_('Busca Contribuinte') ?></legend>
+  
+  <form class="form-horizontal" name="busca">
+    <div class="control-group">
+      <label class="control-label" for="im"><?php echo $this->translate->_('Inscrição Municipal:') ?></label>
+      <div class="controls">
+        <div class="input-append">
+          <input type="text" id="im" name="im" />
+          <button class="btn" id="buscador"><i class="icon-search"></i></button>            
+        </div>
+        <span class="help-block" id="status"></span>
+      </div>
+    </div>    
+  </form>
+</fieldset>
+<?php } ?>
+
+<fieldset>
+  <legend><?php echo $this->translate->_('Parâmetros') ?></legend>
+  <!-- Logotipo do Contribuinte -->
+  <div class="logo-contribuinte pull-right">
+    <?php if ($this->sLogoPrestador) { ?>
+      <img class="img-polaroid img-rounded" src="<?php echo $this->baseUrl("/tmp/{$this->sLogoPrestador}") ?>">
+    <?php } else { ?>
+      <img class="img-polaroid img-rounded" src="<?php echo $oBaseUrlHelper->baseUrl('/global/img/none.jpg?v='.date('Ymdhis')) ?>">
+    <?php } ?>
+  </div>
+  <div class="pull-left">
+    <?php echo $this->form ?>
+  </div>
+</fieldset>
